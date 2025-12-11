@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <header class="header">
+            <a href="#" class="header__logo">
+            <img
+                src="./public/icons/logo.svg"
+                alt="logo"
+                class="header__logo-image"
+                width="192" height="48"
+            />
+            </a>
+            <form class="header__search">
+            <label class="header__search-label visually-hidden" for="search">Поиск</label>
+            <input
+                class="header__search-input"
+                type="search"
+                id="search"
+                placeholder="Поиск по городу"
+                oninput="console.log(this.value)"
+            />
+            </form>
+        </header>
+        <main>
+            <section class="weather">
+              <div class="weather__info">
+                <div class="weather__current">
+                    <div class="weather__city">Москва</div>
+                    <div class="weather__date">
+                        Суббота, <time datetime="01-06">06 января</time>
+                    </div>
+                    <div class="weather__time">
+                        <time datetime="11:29">11:29</time>
+                    </div>
+                </div>
+                <div class="weather__temperature">-7°</div>
+                <div class="weather__other">
+                  <div class="weather__details">
+                      <img 
+                          src="./public/icons/broken-clouds.svg" 
+                          alt="" 
+                          class="weather__icon"
+                          width="24" height="24"
+                      >
+                      <div class="weather__condition">Облачно</div>
+                  </div>
+                  <div class="weather__perceived-temperature">Ощущается как -11°</div>
+                </div>
+              </div>
+              <div class="weather__cards">
+                  <div class="weather__cards-item">&nbsp</div>
+                  <div class="weather__cards-item">&nbsp</div>
+                  <div class="weather__cards-item">&nbsp</div>
+                  <div class="weather__cards-item">&nbsp</div>
+                  <div class="weather__cards-item">&nbsp</div>
+                  <div class="weather__cards-item">&nbsp</div>      
+              </div>
+            </section>
+            <section class="slider"></section>
+        </main>
+        <footer class="footer"></footer>
+      </div>
+    </div>
+  </body>
+</html>
