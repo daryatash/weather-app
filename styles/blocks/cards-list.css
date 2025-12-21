@@ -1,0 +1,12 @@
+.cards-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.cards__item {
+    width: 158px;
+    height: 196px;
+    background-color: var(--netural-tone-100);
+    border-radius: var(--border-radius);
+}
