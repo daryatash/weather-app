@@ -12,7 +12,6 @@
     border-radius: var(--border-radius);
     font-size: 20px;
     font-variant-numeric: lining-nums proportional-nums;
-    line-height: 1.2;
 
     background-image: url('../../public/icons/search.svg');
     background-repeat: no-repeat;

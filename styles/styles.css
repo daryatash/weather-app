@@ -4,7 +4,8 @@
 @import './blocks/header.css';
 @import './blocks/search.css';
 @import './blocks/weather.css';
-@import './blocks/cards-list.css';
+@import './blocks/cards.css';
+@import './blocks/progress.css';
 @import './blocks/slider.css';
 @import './blocks/footer.css';
 
@@ -13,10 +14,12 @@
     --container-padding: 32px;
 
     --netural-tone-100: rgba(245, 244, 244, 0.4);
+    --netural-tone-200: rgba(218, 218, 218, 0.40);
 
     --netural-filled-100: #F5F4F4;
     --netural-filled-200: #DADADA;
     --netural-filled-600: #707070;
+    --netural-filled-800: #393939;
     --netural-filled-900: #202020;
 
     --border-radius: 8px;
@@ -37,6 +40,7 @@ body {
     min-height: 100vh;
     padding-block: 32px;
     min-width: 1280px;
+    line-height: 1.2;
 }
 
 a,
