@@ -1,0 +1,13 @@
+@import './normalize.css';
+@import './fonts.css';
+@import './variables.css';
+@import './globals.css';
+@import './utils.css';
+
+@import './blocks/header.css';
+@import './blocks/search.css';
+@import './blocks/weather.css';
+@import './blocks/cards.css';
+@import './blocks/progress.css';
+@import './blocks/slider.css';
+@import './blocks/footer.css';

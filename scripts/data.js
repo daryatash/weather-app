@@ -1,4 +1,4 @@
-const meteoData = [
+export const meteoData = [
     {
         title: 'Влажность',
         icon: './public/icons/meteodata/humidity.svg',
@@ -6,6 +6,7 @@ const meteoData = [
         more: {
             progressBar: true,
             progressValue: 75,
+            progressMin: 0,
             progressMax: 100, 
             firstDescription: '0%',
             secondDescription: '100%'
@@ -18,7 +19,8 @@ const meteoData = [
         more: {
             progressBar: true,
             progressValue: 761,
-            progressMax: 1000, 
+            progressMin: 658,
+            progressMax: 812, 
             firstDescription: 'Повышенное',
         }
     },
@@ -29,6 +31,7 @@ const meteoData = [
         more: {
             progressBar: true,
             progressValue: 28,
+            progressMin: 0,
             progressMax: 100, 
             firstDescription: 'Нормальная',
         }

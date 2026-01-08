@@ -1,5 +1,9 @@
 .search {
     position: relative;
+
+    &:hover .search__input:not(:focus) {
+        background-color: var(--netural-filled-200);
+    }
 }
 
 .search__input {
@@ -10,13 +14,10 @@
     background: var(--netural-tone-100);
     border: none;
     border-radius: var(--border-radius);
+    outline: none;
     font-size: 20px;
     font-variant-numeric: lining-nums proportional-nums;
-
-    background-image: url('../../public/icons/search.svg');
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    background-size: var(--icon-size) var(--icon-size);
+    position: relative;
 
     &::-webkit-search-cancel-button {
         display: none;
@@ -26,21 +27,20 @@
         display: none;
     }
 
-    &:hover {
-        background-color: var(--netural-filled-200);
-    }
-
     &:focus {
         background-color: var(--netural-filled-200);
-    }
-
-    &:not(:placeholder-shown) {
-        background-image: none;
     }
 
     &::placeholder {
         color: var(--netural-filled-600);
     }
+}
+
+.search__icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translate(0, -50%);
 }
 
 .search__clear-button {
@@ -55,12 +55,14 @@
     padding: 0;
     cursor: pointer;
 
-    &.hidden {
-        display: none;
+    svg {
+        fill: var(--netural-filled-700);
+        stroke: var(--netural-filled-700);
+        stroke-width: 0.5px;
     }
 
-    &-icon {
-        width: var(--icon-size);
-        height: var(--icon-size);
+    &:hover svg {
+        fill: var(--netural-filled-900);
+        stroke: var(--netural-filled-900);
     }
 }

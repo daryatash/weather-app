@@ -1,0 +1,19 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    font-variant-numeric: lining-nums proportional-nums;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding-block: 32px;
+    min-width: 1280px;
+    line-height: 1.2;
+}
+
+a,
+button,
+input {
+    transition-duration: var(--transition-duration);
+}
