@@ -17,16 +17,14 @@
         radial-gradient(
             circle 6px at var(--indicator-position) 50%,
             transparent 6px,
-            black 6px
-        );
+            black 6px);
     -webkit-mask-image: 
         radial-gradient(
             circle 6px at var(--indicator-position) 50%,
             transparent 6px,
-            black 6px
-        );
-    mask-size: 100% 100%;
-    -webkit-mask-size: 100% 100%;
+            black 6px);
+    mask-size: 100%;
+    -webkit-mask-size: 100%;
 
 }
 

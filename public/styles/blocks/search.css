@@ -54,6 +54,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
+    color: var(--neutral-filled-700);
 
     svg {
         fill: var(--netural-filled-700);
