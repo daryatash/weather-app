@@ -9,5 +9,7 @@
 @import './blocks/weather.css';
 @import './blocks/cards.css';
 @import './blocks/progress.css';
+@import './blocks/forecast.css';
+@import './blocks/tabs.css';
 @import './blocks/slider.css';
 @import './blocks/footer.css';

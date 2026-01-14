@@ -80,9 +80,46 @@
               </div>
               <ul class="cards"></ul>
             </section>
-            <section class="slider"></section>
+
+            <section class="forecast">
+              <div class="forecast__header">
+                <h2 class="forecast__title">Прогноз:</h2>
+                <div class="tabs">
+                  <div class="tabs__menu">
+                    <button class="tabs__button active" data-tab="tab_24h">на 24 часа</button>
+                    <button class="tabs__button" data-tab="tab_5d">на 5 дней</button>
+                  </div>
+                </div>
+              </div>
+              <div class="forecast__main">
+                <div class="tabs__content active" id="tab_24h">
+                  <div class="tabs__slider slider">
+                      <button class="slider__button slider__button--left" disabled>
+                        <img src="./public/icons/arrow-left.svg" alt="Назад" width="24" height="24">
+                      </button>
+                      <ul class="slider__list" data-js-24h></ul>
+                      <button class="slider__button slider__button--right">
+                        <img src="./public/icons/arrow-right.svg" alt="Далее" width="24" height="24">
+                      </button>
+                  </div>
+                </div>
+                <div class="tabs__content" id="tab_5d">
+                  <div class="tabs__slider slider">
+                      <button class="slider__button slider__button--left" disabled>
+                        <img src="./public/icons/arrow-left.svg" alt="Назад" width="24" height="24">
+                      </button>
+                      <ul class="slider__list" data-js-5d></ul>
+                      <button class="slider__button slider__button--right">
+                        <img src="./public/icons/arrow-right.svg" alt="Далее" width="24" height="24">
+                      </button>
+                  </div>
+                </div>
+              </div>
+            </section>
         </main>
-        <footer class="footer"></footer>
+        <footer class="footer">
+          <p class="footer__rights">Проект выполнен в рамках стажировки <a class="footer__link" href="https://preax.ru" target="_blank">PREAX</a></p>
+        </footer>
       </div>
   </body>
 </html>
