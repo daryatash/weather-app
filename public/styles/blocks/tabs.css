@@ -1,7 +1,13 @@
+.tabs {
+    display: contents;
+}
+
 .tabs__menu {
+    grid-area: menu;
     display: flex;
     align-items: center;
     column-gap: 32px;
+    align-self: end;
 }
 
 .tabs__button {
@@ -20,14 +26,19 @@
     &::after {
         content: '';
         position: absolute;
-        width: 82px;
+        width: 83px;
         height: 2px;
-        top: 100%;
+        top: 97%;
         left: 50%;
         transform: translate(-50%, 0);
         background-color: var(--netural-filled-100);
         border-radius: 10px;
     }
+}
+
+.tabs__body {
+    grid-area: body;
+    width: 100%;
 }
 
 .tabs__content:not(.active) {

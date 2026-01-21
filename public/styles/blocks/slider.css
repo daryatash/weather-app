@@ -26,7 +26,6 @@
     display: flex;
     column-gap: 16px;
     overflow: hidden;
-    /*max-width: 880px;*/
     width: 880px;
 
     mask-image: linear-gradient(
@@ -51,17 +50,12 @@
     justify-content: space-between;
     align-items: center;
     column-gap: 16px;
-    min-width: 156px;
-    /*max-width: 167px;*/
-    width: 100%;
+    flex-shrink: 0;
+    width: auto;
     height: 64px;
     padding: 16px;
     background-color: var(--netural-tone-100);
     border-radius: var(--border-radius);
-}
-
-.slider__item--wide {
-    min-width: 276px;
 }
 
 .slider__item-time,

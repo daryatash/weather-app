@@ -1,125 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
     <title>WeatherApp</title>
-    <link rel="stylesheet" href="./public/styles/main.css">
-    <link rel="icon" href="./public/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./public/styles/main.css" />
+    <link rel="icon" href="./public/icons/favicon.svg" type="image/svg+xml" />
     <script type="module" src="./scripts/script.js"></script>
   </head>
   <body>
-      <div class="container">
-        <header class="header">
-            <a href="#" class="header__logo">
-            <img
-                src="./public/icons/logo.svg"
-                alt="Логотип"
-                class="header__logo-image"
-                width="192" height="48"
+    <div class="container">
+      <header class="header">
+        <a
+          href="#"
+          class="header__logo"
+          aria-label="Перейти на главную страницу WeatherApp"
+        >
+          <img
+            src="./public/icons/logo.svg"
+            alt="Логотип"
+            class="header__logo-image"
+            width="192"
+            height="48"
+          />
+        </a>
+        <form class="header__search search">
+          <label class="search__label visually-hidden" for="search"
+            >Поиск</label
+          >
+          <input
+            class="search__input"
+            type="search"
+            id="search"
+            placeholder="Поиск по городу"
+            autocomplete="off"
+          />
+          <img
+            class="search__icon"
+            src="./public/icons/search.svg"
+            alt=""
+            width="24"
+            height="24"
+          />
+          <button
+            type="button"
+            id="search-clear-button"
+            class="search__clear-button"
+            aria-label="Очистить поиск"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-            </a>
-            <form class="header__search search">
-              <label class="search__label visually-hidden" for="search">Поиск</label>
-              <input
-                  class="search__input"
-                  type="search"
-                  id="search"
-                  placeholder="Поиск по городу"
-                  autocomplete="off"
-              >
-              <img 
-                class="search__icon"
-                src="./public/icons/search.svg" 
-                alt="" 
-                width="24" 
-                height="24"
-              >
-              <button type="button" class="search__clear-button hidden" aria-label="Очистить поиск">
-                <!-- <img 
-                  class="search__clear-button-icon" 
-                  src="./public/icons/close.svg" 
+              <path
+                d="M4.65041 5.95141C4.2912 5.59221 4.29119 5.00983 4.65039 4.65062C5.00958 4.29141 5.59197 4.2914 5.95118 4.65059L19.3496 18.0485C19.7088 18.4077 19.7088 18.9901 19.3496 19.3493C18.9904 19.7085 18.408 19.7086 18.0488 19.3494L4.65041 5.95141Z"
+              />
+              <path
+                d="M4.65084 19.3496C4.29163 18.9904 4.29161 18.408 4.65081 18.0488L18.0488 4.6504C18.408 4.29119 18.9903 4.29118 19.3496 4.65038C19.7088 5.00957 19.7088 5.59196 19.3496 5.95117L5.95163 19.3496C5.59243 19.7088 5.01005 19.7088 4.65084 19.3496Z"
+              />
+            </svg>
+          </button>
+        </form>
+      </header>
+      <main>
+        <h1 class="visually-hidden">Weather App</h1>
+        <section class="weather">
+          <h2 class="visually-hidden">
+            Информация о погоде в выбранном городе
+          </h2>
+          <div class="weather__info">
+            <div class="weather__current">
+              <h3 class="weather__city">Москва</h3>
+              <p class="weather__date">
+                Суббота, <time datetime="2026-01-06">06 января</time>
+              </p>
+              <p class="weather__time">
+                <time datetime="11:29">11:29</time>
+              </p>
+            </div>
+            <p class="weather__temperature">
+              <span class="visually-hidden">Температура воздуха</span>-7°
+            </p>
+            <div class="weather__other">
+              <div class="weather__details">
+                <img
+                  src="./public/icons/broken-clouds.svg"
                   alt=""
-                  width="24" height="24"
-                > -->
+                  class="weather__icon"
+                  width="24"
+                  height="24"
+                />
+                <p class="weather__condition">Облачно</p>
+              </div>
+              <p class="weather__perceived-temperature">Ощущается как -11°</p>
+            </div>
+          </div>
+          <ul class="weather__cards cards"></ul>
+        </section>
 
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4.65041 5.95141C4.2912 5.59221 4.29119 5.00983 4.65039 4.65062C5.00958 4.29141 5.59197 4.2914 5.95118 4.65059L19.3496 18.0485C19.7088 18.4077 19.7088 18.9901 19.3496 19.3493C18.9904 19.7085 18.408 19.7086 18.0488 19.3494L4.65041 5.95141Z"/>
-                  <path d="M4.65084 19.3496C4.29163 18.9904 4.29161 18.408 4.65081 18.0488L18.0488 4.6504C18.408 4.29119 18.9903 4.29118 19.3496 4.65038C19.7088 5.00957 19.7088 5.59196 19.3496 5.95117L5.95163 19.3496C5.59243 19.7088 5.01005 19.7088 4.65084 19.3496Z"/>
-                </svg>
-              </button>
-            </form>
-        </header>
-        <main>
-            <h1 class="visually-hidden">Weather App</h1>
-            <section class="weather">
-              <h2 class="visually-hidden">Информация о погоде в выбранном городе</h2>
-              <div class="weather__info">
-                <div class="weather__current">
-                    <h3 class="weather__city">Москва</h3>
-                    <p class="weather__date">
-                        Суббота, <time datetime="2026-01-06">06 января</time>
-                    </p>
-                    <p class="weather__time">
-                        <time datetime="11:29">11:29</time>
-                    </p>
-                </div>
-                <p class="weather__temperature"><span class="visually-hidden">Температура воздуха</span>-7°</p>
-                <div class="weather__other">
-                  <div class="weather__details">
-                      <img 
-                          src="./public/icons/broken-clouds.svg" 
-                          alt="" 
-                          class="weather__icon"
-                          width="24" height="24"
-                      >
-                      <p class="weather__condition">Облачно</p>
-                  </div>
-                  <p class="weather__perceived-temperature">Ощущается как -11°</p>
-                </div>
-              </div>
-              <ul class="cards"></ul>
-            </section>
-
-            <section class="forecast">
-              <div class="forecast__header">
-                <h2 class="forecast__title">Прогноз:</h2>
-                <div class="tabs">
-                  <div class="tabs__menu">
-                    <button class="tabs__button active" data-tab="tab_24h">на 24 часа</button>
-                    <button class="tabs__button" data-tab="tab_5d">на 5 дней</button>
-                  </div>
-                </div>
-              </div>
-              <div class="forecast__main">
-                <div class="tabs__content active" id="tab_24h">
-                  <div class="tabs__slider slider">
-                      <button class="slider__button slider__button--left" disabled>
-                        <img src="./public/icons/arrow-left.svg" alt="Назад" width="24" height="24">
-                      </button>
-                      <ul class="slider__list" data-js-24h></ul>
-                      <button class="slider__button slider__button--right">
-                        <img src="./public/icons/arrow-right.svg" alt="Далее" width="24" height="24">
-                      </button>
-                  </div>
-                </div>
-                <div class="tabs__content" id="tab_5d">
-                  <div class="tabs__slider slider">
-                      <button class="slider__button slider__button--left" disabled>
-                        <img src="./public/icons/arrow-left.svg" alt="Назад" width="24" height="24">
-                      </button>
-                      <ul class="slider__list" data-js-5d></ul>
-                      <button class="slider__button slider__button--right">
-                        <img src="./public/icons/arrow-right.svg" alt="Далее" width="24" height="24">
-                      </button>
-                  </div>
-                </div>
-              </div>
-            </section>
-        </main>
-        <footer class="footer">
-          <p class="footer__rights">Проект выполнен в рамках стажировки <a class="footer__link" href="https://preax.ru" target="_blank">PREAX</a></p>
-        </footer>
-      </div>
+        <section class="forecast">
+          <h2 class="forecast__title">Прогноз:</h2>
+          <div class="forecast__tabs tabs">
+            <div class="tabs__menu" role="tablist"></div>
+            <div class="tabs__body"></div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__rights">
+          Проект выполнен в рамках стажировки
+          <a
+            class="footer__link"
+            href="https://preax.ru"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            PREAX
+          </a>
+        </p>
+      </footer>
+    </div>
   </body>
 </html>

@@ -4,6 +4,7 @@
     &:hover .search__input:not(:focus) {
         background-color: var(--netural-filled-200);
     }
+
 }
 
 .search__input {
@@ -34,6 +35,16 @@
     &::placeholder {
         color: var(--netural-filled-600);
     }
+
+    &:focus ~ .search__icon,
+    &:not(:placeholder-shown) ~ .search__icon{
+        display: none;
+    }
+
+    &:focus ~ .search__clear-button,
+    &:not(:placeholder-shown) ~ .search__clear-button {
+        display: block;
+    }
 }
 
 .search__icon {
@@ -41,6 +52,7 @@
     top: 50%;
     right: 16px;
     transform: translate(0, -50%);
+    pointer-events: none;
 }
 
 .search__clear-button {
@@ -55,6 +67,7 @@
     padding: 0;
     cursor: pointer;
     color: var(--neutral-filled-700);
+    display: none;
 
     svg {
         fill: var(--netural-filled-700);
