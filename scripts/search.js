@@ -1,4 +1,4 @@
-export const initSearch = () => {
+export const renderSearch = () => {
     
     const searchInput = document.getElementById("search");
     const clearButton = document.getElementById("search-clear-button");

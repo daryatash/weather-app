@@ -1,9 +1,8 @@
-import { initSearch } from './search.js'
+import { renderSearch } from './search.js'
 import { renderMeteoData} from './weather.js'
-import { renderTabs } from './tabs.js'
-import { renderSlider } from './slider.js'
+import { renderTabs, toggleTabs } from './tabs.js'
 
-initSearch()
+renderSearch()
 renderMeteoData()
 renderTabs()
-renderSlider()
+toggleTabs()

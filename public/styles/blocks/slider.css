@@ -22,6 +22,10 @@
     }
 }
 
+.slider__tabpanel:not(.active) {
+    display: none;
+}
+
 .slider__list {
     display: flex;
     column-gap: 16px;

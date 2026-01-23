@@ -70,8 +70,8 @@
       </header>
       <main>
         <h1 class="visually-hidden">Weather App</h1>
-        <section class="weather">
-          <h2 class="visually-hidden">
+        <section class="weather" aria-labelledby="weather-title">
+          <h2 id="weather-title" class="visually-hidden">
             Информация о погоде в выбранном городе
           </h2>
           <div class="weather__info">
@@ -104,11 +104,46 @@
           <ul class="weather__cards cards"></ul>
         </section>
 
-        <section class="forecast">
-          <h2 class="forecast__title">Прогноз:</h2>
+        <section class="forecast" aria-labelledby="forecast-title">
+          <h2 class="forecast__title" id="forecast-title">Прогноз:</h2>
           <div class="forecast__tabs tabs">
-            <div class="tabs__menu" role="tablist"></div>
-            <div class="tabs__body"></div>
+            <ul class="tabs__menu" role="tablist"></ul>
+            <div class="tabs__body">
+              <div class="tabs__slider slider">
+                <button 
+                  class="slider__button" 
+                  type="button" 
+                  aria-label="Назад"
+                  title="Назад"
+                  disabled
+                >
+                  <img 
+                    class="slider__button-icon"
+                    src="./public/icons/arrow-left.svg" 
+                    alt=""
+                    aria-hidden="true"
+                    width="24" height="24"
+                    loading="lazy"
+                  >
+                </button>
+                <div class="slider__content"></div>
+                <button 
+                  class="slider__button" 
+                  type="button"
+                  aria-label="Вперед"
+                  title="Вперед"
+                >
+                  <img 
+                    class="slider__button-icon"
+                    src="./public/icons/arrow-right.svg" 
+                    alt="" 
+                    aria-hidden="true"
+                    width="24" height="24"
+                    loading="lazy"
+                  >
+                </button>
+              </div>
+            </div>
           </div>
         </section>
       </main>

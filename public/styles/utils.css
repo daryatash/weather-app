@@ -20,7 +20,3 @@
   border-radius: var(--border-radius);
   backdrop-filter: blur(25px);
 }
-
-.hidden {
-  display: none;
-}

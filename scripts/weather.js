@@ -1,27 +1,32 @@
-import { meteoData } from './meteoData.js'
+import { meteoData } from "./meteoData.js";
 
 export const renderMeteoData = () => {
   const cardsList = document.querySelector(".cards");
   cardsList.innerHTML = "";
 
   meteoData.forEach((card) => {
-    const { title, icon, value, more } = card
+    const { title, icon, value, more } = card;
 
     const cardsItem = document.createElement("li");
 
     cardsItem.className = "cards__item";
 
-    let validProgressValue = more.progressValue
+    let validProgressValue = more.progressValue;
 
     if (validProgressValue < more.progressMin) {
-      validProgressValue = more.progressMin
+      validProgressValue = more.progressMin;
     }
 
     if (validProgressValue > more.progressMax) {
-      validProgressValue = more.progressMax
+      validProgressValue = more.progressMax;
     }
 
-    const progressBarValue = (validProgressValue - more.progressMin) / (more.progressMax - more.progressMin) * 100
+    const progressBarValue =
+      ((validProgressValue - more.progressMin) /
+        (more.progressMax - more.progressMin)) *
+      100;
+
+    const pressureTitle = "Давление"
 
     cardsItem.innerHTML = `
             <h3 class="cards__item-title"></h3>
@@ -32,10 +37,10 @@ export const renderMeteoData = () => {
                   more.progressBar
                     ? `<div class="cards__item-progress progress">
                             <div class="progress__bar ${
-                                title === "Давление"
-                                  ? "progress__bar--pressure"
-                                  : ""
-                              }">
+                              title === pressureTitle
+                                ? "progress__bar--pressure"
+                                : ""
+                            }">
                             </div>
                             <div class="progress__indicator"></div>
                         </div>`
@@ -52,27 +57,36 @@ export const renderMeteoData = () => {
             </div>
         `;
 
-    cardsItem.querySelector('.cards__item-title').textContent = title
-    cardsItem.querySelector('.cards__item-icon').src = icon
-    cardsItem.querySelector('.cards__item-value').textContent = value
+    cardsItem.querySelector(".cards__item-title").textContent = title;
+    cardsItem.querySelector(".cards__item-icon").src = icon;
+    cardsItem.querySelector(".cards__item-value").textContent = value;
 
     if (more.progressBar) {
-      const progressBar = cardsItem.querySelector('.progress__bar')
-      const indicator = cardsItem.querySelector('.progress__indicator')
-      
-      progressBar.style.setProperty('--indicator-position', `${progressBarValue}%`);
-      indicator.style.setProperty('--indicator-position', `${progressBarValue}%`);
+      const progressBar = cardsItem.querySelector(".progress__bar");
+      const indicator = cardsItem.querySelector(".progress__indicator");
+
+      progressBar.style.setProperty(
+        "--indicator-position",
+        `${progressBarValue}%`,
+      );
+      indicator.style.setProperty(
+        "--indicator-position",
+        `${progressBarValue}%`,
+      );
       indicator.style.left = `${progressBarValue}%`;
     }
 
     if (more.secondDescription) {
-      const descriptions = cardsItem.querySelector('.cards__item-descriptions');
-      descriptions.children[0].querySelector('p').textContent = more.firstDescription;
-      descriptions.children[1].querySelector('p').textContent = more.secondDescription;
+      const descriptions = cardsItem.querySelector(".cards__item-descriptions");
+      descriptions.children[0].querySelector("p").textContent =
+        more.firstDescription;
+      descriptions.children[1].querySelector("p").textContent =
+        more.secondDescription;
     } else {
-      cardsItem.querySelector('.cards__item-description').textContent = more.firstDescription;
+      cardsItem.querySelector(".cards__item-description").textContent =
+        more.firstDescription;
     }
-    
+
     cardsList.appendChild(cardsItem);
   });
 };

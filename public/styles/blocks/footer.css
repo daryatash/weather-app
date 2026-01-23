@@ -9,3 +9,7 @@
 .footer__link {
     color: var(--netural-filled-100);
 }
+
+.footer__link:hover {
+    color: var(--netural-filled-900);
+}

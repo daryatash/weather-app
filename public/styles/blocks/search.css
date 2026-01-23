@@ -4,7 +4,6 @@
     &:hover .search__input:not(:focus) {
         background-color: var(--netural-filled-200);
     }
-
 }
 
 .search__input {
@@ -17,7 +16,6 @@
     border-radius: var(--border-radius);
     outline: none;
     font-size: 20px;
-    font-variant-numeric: lining-nums proportional-nums;
     position: relative;
 
     &::-webkit-search-cancel-button {
@@ -66,7 +64,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    color: var(--neutral-filled-700);
+    color: var(--netural-filled-700);
     display: none;
 
     svg {

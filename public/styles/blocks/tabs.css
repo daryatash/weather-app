@@ -17,11 +17,25 @@
     font-weight: 700;
     line-height: 1.25;
     padding: 0 0 3px 0;
+    position: relative;
+
+    &:hover {
+        &::after {
+            content: '';
+            position: absolute;
+            width: 83px;
+            height: 2px;
+            top: 97%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            background-color: var(--netural-filled-400);
+            border-radius: 10px;
+        }
+    }
 }
 
 .tabs__button.active {
     color: var(--netural-filled-100);
-    position: relative;
     
     &::after {
         content: '';
@@ -39,8 +53,4 @@
 .tabs__body {
     grid-area: body;
     width: 100%;
-}
-
-.tabs__content:not(.active) {
-    display: none;
 }
