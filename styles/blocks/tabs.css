@@ -11,6 +11,9 @@
 }
 
 .tabs__button {
+    --line-width: 83px;
+    --line-height: 2px;
+
     color: var(--netural-filled-400);
     background-color: transparent;
     border: none;
@@ -23,8 +26,8 @@
         &::after {
             content: '';
             position: absolute;
-            width: 83px;
-            height: 2px;
+            width: var(--line-width);
+            height: var(--line-height);
             top: 97%;
             left: 50%;
             transform: translate(-50%, 0);
@@ -40,8 +43,8 @@
     &::after {
         content: '';
         position: absolute;
-        width: 83px;
-        height: 2px;
+        width: var(--line-width);
+        height: var(--line-height);
         top: 97%;
         left: 50%;
         transform: translate(-50%, 0);
@@ -54,3 +57,25 @@
     grid-area: body;
     width: 100%;
 }
+
+@media (max-width: 1023px) {
+    .tabs__menu {
+        column-gap: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .tabs__menu {
+        column-gap: 16px;
+    }
+
+    .tabs__button {
+        --line-width: 63px;
+        --line-height: 1px;
+        
+        line-height: 1.33;
+        font-size: 12px;
+        padding-bottom: 1px;
+    }
+}
+

@@ -4,16 +4,16 @@ export const renderSliderItems = (item, sliderList) => {
     sliderItem.classList.add('slider__item')
 
     sliderItem.innerHTML = `
-                <p class="slider__item-time">
+                <span class="slider__item-time">
                     <time></time>
-                </p>
+                </span>
                 <img
                     src="" 
                     alt="" 
                     class="slider__item-icon"
                     width="32" height="32"
                 >
-                <p class="slider__item-degrees"></p>
+                <span class="slider__item-degrees"></span>
             `
 
     const timeElement = sliderItem.querySelector('time')

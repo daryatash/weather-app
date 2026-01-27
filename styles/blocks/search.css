@@ -1,5 +1,7 @@
 .search {
     position: relative;
+    max-width: 506px;
+    width: 100%;
 
     &:hover .search__input:not(:focus) {
         background-color: var(--netural-filled-200);
@@ -7,7 +9,7 @@
 }
 
 .search__input {
-    width: 506px;
+    width: 100%;
     height: 48px;
     padding-inline: 16px 56px;
     color: var(--netural-filled-900);
@@ -76,5 +78,29 @@
     &:hover svg {
         fill: var(--netural-filled-900);
         stroke: var(--netural-filled-900);
+    }
+}
+
+@media (min-width: 886px) and (max-width: 1023px) {
+    .search {
+        max-width: 601px;
+    }
+}
+
+@media (max-width: 767px) {
+    .search {
+        max-width: 409px;
+    }
+
+    .search__input {
+        height: 32px;
+        padding-inline: 12px 40px;
+        font-size: 14px;
+    }
+
+    .search__icon {
+        right: 12px;
+        width: 16px;
+        height: 16px;
     }
 }

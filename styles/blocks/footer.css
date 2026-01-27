@@ -13,3 +13,18 @@
 .footer__link:hover {
     color: var(--netural-filled-900);
 }
+
+
+@media (max-width: 1023px) {
+    .footer {
+        height: 68px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer {
+        height: 48px;
+        font-size: 12px;
+        line-height: 1.33;
+    }
+}

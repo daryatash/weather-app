@@ -7,7 +7,7 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <title>WeatherApp</title>
-    <link rel="stylesheet" href="./public/styles/main.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
     <link rel="icon" href="./public/icons/favicon.svg" type="image/svg+xml" />
     <script type="module" src="./scripts/script.js"></script>
   </head>
@@ -19,13 +19,19 @@
           class="header__logo"
           aria-label="Перейти на главную страницу WeatherApp"
         >
-          <img
-            src="./public/icons/logo.svg"
-            alt="Логотип"
-            class="header__logo-image"
-            width="192"
-            height="48"
-          />
+          <picture>
+            <source
+              media="(max-width: 1023px)" 
+              srcset="./public/icons/logo-tablet-mobile.svg"
+            >
+            <img
+              src="./public/icons/logo.svg"
+              alt="Логотип"
+              class="header__logo-image"
+              width="192"
+              height="48"
+            />
+          </picture>
         </a>
         <form class="header__search search">
           <label class="search__label visually-hidden" for="search"
@@ -50,6 +56,7 @@
             id="search-clear-button"
             class="search__clear-button"
             aria-label="Очистить поиск"
+            title="Очистить поиск"
           >
             <svg
               width="24"
@@ -77,16 +84,16 @@
           <div class="weather__info">
             <div class="weather__current">
               <h3 class="weather__city">Москва</h3>
-              <p class="weather__date">
+              <span class="weather__date">
                 Суббота, <time datetime="2026-01-06">06 января</time>
-              </p>
-              <p class="weather__time">
+              </span>
+              <span class="weather__time">
                 <time datetime="11:29">11:29</time>
-              </p>
+              </span>
             </div>
-            <p class="weather__temperature">
+            <span class="weather__temperature">
               <span class="visually-hidden">Температура воздуха</span>-7°
-            </p>
+            </span>
             <div class="weather__other">
               <div class="weather__details">
                 <img
@@ -96,9 +103,9 @@
                   width="24"
                   height="24"
                 />
-                <p class="weather__condition">Облачно</p>
+                <span class="weather__condition">Облачно</span>
               </div>
-              <p class="weather__perceived-temperature">Ощущается как -11°</p>
+              <span class="weather__perceived-temperature">Ощущается как -11°</span>
             </div>
           </div>
           <ul class="weather__cards cards"></ul>
@@ -123,7 +130,6 @@
                     alt=""
                     aria-hidden="true"
                     width="24" height="24"
-                    loading="lazy"
                   >
                 </button>
                 <div class="slider__content"></div>
@@ -139,7 +145,6 @@
                     alt="" 
                     aria-hidden="true"
                     width="24" height="24"
-                    loading="lazy"
                   >
                 </button>
               </div>

@@ -31,7 +31,7 @@ export const renderMeteoData = () => {
     cardsItem.innerHTML = `
             <h3 class="cards__item-title"></h3>
             <img src="" alt="" class="cards__item-icon" width="32" height="32">
-            <p class="cards__item-value"></p>
+            <span class="cards__item-value"></span>
             <div class="cards__item-more">
                 ${
                   more.progressBar
@@ -49,10 +49,10 @@ export const renderMeteoData = () => {
                 ${
                   more.secondDescription
                     ? `<div class="cards__item-descriptions">
-                            <div class="cards__item-first-description"><p></p></div>
-                            <div class="cards__item-second-description"><p></p></div>
+                            <div class="cards__item-first-description"><span></span></div>
+                            <div class="cards__item-second-description"><span></span></div>
                         </div>`
-                    : `<p class="cards__item-description"></p>`
+                    : `<span class="cards__item-description"></span>`
                 }
             </div>
         `;
@@ -65,22 +65,15 @@ export const renderMeteoData = () => {
       const progressBar = cardsItem.querySelector(".progress__bar");
       const indicator = cardsItem.querySelector(".progress__indicator");
 
-      progressBar.style.setProperty(
-        "--indicator-position",
-        `${progressBarValue}%`,
-      );
-      indicator.style.setProperty(
-        "--indicator-position",
-        `${progressBarValue}%`,
-      );
-      indicator.style.left = `${progressBarValue}%`;
+      progressBar.style.setProperty("--indicator-percentage", `${progressBarValue}%`);
+      indicator.style.setProperty("--indicator-percentage", `${progressBarValue}%`);
     }
 
     if (more.secondDescription) {
       const descriptions = cardsItem.querySelector(".cards__item-descriptions");
-      descriptions.children[0].querySelector("p").textContent =
+      descriptions.children[0].querySelector("span").textContent =
         more.firstDescription;
-      descriptions.children[1].querySelector("p").textContent =
+      descriptions.children[1].querySelector("span").textContent =
         more.secondDescription;
     } else {
       cardsItem.querySelector(".cards__item-description").textContent =

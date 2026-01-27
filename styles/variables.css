@@ -1,6 +1,6 @@
 :root {
     --container-width: 1120px;
-    --container-padding: 32px;
+    --padding: 32px;
 
     --netural-tone-100: rgba(245, 244, 244, 0.4);
     --netural-tone-200: rgba(218, 218, 218, 0.40);
@@ -18,4 +18,18 @@
     --icon-size: 24px;
 
     --transition-duration: 0.2s;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --padding: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --padding: 16px;
+
+    --icon-size: 16px;
+  }
 }
