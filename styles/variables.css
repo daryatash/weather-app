@@ -18,18 +18,13 @@
     --icon-size: 24px;
 
     --transition-duration: 0.2s;
-}
 
-@media (max-width: 1023px) {
-  :root {
-    --padding: 24px;
-  }
-}
+    @media (max-width: 1023px) {
+      --padding: 24px;
+    }
 
-@media (max-width: 767px) {
-  :root {
-    --padding: 16px;
-
-    --icon-size: 16px;
-  }
+    @media (max-width: 767px) {
+      --padding: 16px;
+      --icon-size: 16px;
+    }
 }

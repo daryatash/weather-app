@@ -20,17 +20,12 @@
   background: rgba(112, 112, 112, 0.10);
   border-radius: var(--border-radius);
   backdrop-filter: blur(25px);
-}
 
-
-@media (min-width: 1280px) {
-  .container {
+  @media (min-width: 1280px) {
     max-width: min(var(--container-width), calc(100% - 64px));
   }
-}
 
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .container {
-    max-width: 960px;
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    max-width: clamp(960px, 94vw, var(--container-width));
   }
 }

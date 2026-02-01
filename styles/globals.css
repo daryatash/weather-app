@@ -1,7 +1,7 @@
 body {
     font-family: 'Raleway', sans-serif;
     font-variant-numeric: lining-nums proportional-nums;
-    background-image: url('../public/images/background.jpg');
+    background-image: url('../public/images/background-2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,6 +10,14 @@ body {
     padding-block: var(--padding);
     min-width: 1280px;
     line-height: 1.2;
+
+    @media (max-width: 1279px) {
+        min-width: 768px;
+    }
+
+    @media (max-width: 767px) {
+        min-width: 375px;
+    }
 }
 
 a,
@@ -17,16 +25,4 @@ button,
 input,
 svg {
     transition-duration: var(--transition-duration);
-}
-
-@media (max-width: 1279px) {
-    body {
-        min-width: 768px;
-    }
-}
-
-@media (max-width: 767px) {
-    body {
-        min-width: 375px;
-    }
 }

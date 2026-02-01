@@ -3,6 +3,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 1023px) {
+        height: 68px;
+    }
+
+    @media (max-width: 767px) {
+        height: 48px;
+        font-size: 12px;
+        line-height: 1.33;
+    }
 }
 
 .footer__rights, 
@@ -10,21 +20,6 @@
     color: var(--netural-filled-100);
 }
 
-.footer__link:hover {
+/* .footer__link:hover {
     color: var(--netural-filled-900);
-}
-
-
-@media (max-width: 1023px) {
-    .footer {
-        height: 68px;
-    }
-}
-
-@media (max-width: 767px) {
-    .footer {
-        height: 48px;
-        font-size: 12px;
-        line-height: 1.33;
-    }
-}
+} */

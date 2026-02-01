@@ -8,6 +8,14 @@
     align-items: center;
     column-gap: 32px;
     align-self: end;
+
+    @media (max-width: 1023px) {
+        column-gap: 24px;
+    }
+
+    @media (max-width: 767px) {
+        column-gap: 16px;
+    }
 }
 
 .tabs__button {
@@ -35,6 +43,15 @@
             border-radius: 10px;
         }
     }
+
+    @media (max-width: 767px) {
+        --line-width: 63px;
+        --line-height: 1px;
+        
+        line-height: 1.33;
+        font-size: 12px;
+        padding-bottom: 1px;
+    }
 }
 
 .tabs__button.active {
@@ -57,25 +74,3 @@
     grid-area: body;
     width: 100%;
 }
-
-@media (max-width: 1023px) {
-    .tabs__menu {
-        column-gap: 24px;
-    }
-}
-
-@media (max-width: 767px) {
-    .tabs__menu {
-        column-gap: 16px;
-    }
-
-    .tabs__button {
-        --line-width: 63px;
-        --line-height: 1px;
-        
-        line-height: 1.33;
-        font-size: 12px;
-        padding-bottom: 1px;
-    }
-}
-

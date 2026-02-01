@@ -5,31 +5,35 @@
     column-gap: 16px;
     height: 112px;
     width: 100%;
+
+    @media (max-width: 1023px) {
+        height: 96px;
+    }
+
+    @media (max-width: 767px) {
+        height: 64px;
+    }
+
+    @media (min-width: 641px) and (max-width: 1023px) {
+        column-gap: 135px;
+    }
 }
 
 .header__logo {
     flex-shrink: 0;
 }
 
-@media (max-width: 1023px) {
-    .header {
-        height: 96px;
-    }
-}
-
-@media (max-width: 1023px) {
-    .header__logo-image {
+.header__logo-image {
+    width: 192px;
+    height: 48px;
+    transition: width 0.2s ease, height 0.2s ease;
+    
+    @media (max-width: 1023px) {
         width: 54px;
         height: 48px;
     }
-}
 
-@media (max-width: 767px) {
-    .header {
-        height: 64px;
-    }
-
-    .header__logo-image {
+    @media (max-width: 767px) {
         width: 32px;
         height: 32px;
     }
