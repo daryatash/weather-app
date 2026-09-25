@@ -58,9 +58,11 @@
 .slider__list {
     display: flex;
     column-gap: 16px;
-    overflow: hidden;
+    overflow-x: auto;
     width: 100%;
     flex: 1;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 
     mask-image: linear-gradient(
         to right,
@@ -77,6 +79,10 @@
         black calc(100% - 20px),
         transparent 100%
     );
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
     @media (max-width: 1023px) {
         column-gap: 12px;

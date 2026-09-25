@@ -1,10 +1,41 @@
-import { meteoData } from "./meteoData.js";
+export const renderWeather = (weather) => {
+  const weatherBlock = document.querySelector(".weather__info");
+  weatherBlock.innerHTML = "";
 
-export const renderMeteoData = () => {
+  weatherBlock.innerHTML = `
+    <div class="weather__current">
+      <h3 class="weather__city">${weather.city}</h3>
+      <span class="weather__date">
+        ${weather.day}, <time datetime="${weather.dateISO}">${weather.dateDayAndMonth}</time>
+      </span>
+      <span class="weather__time">
+        <time datetime="${weather.time}">${weather.time}</time>
+      </span>
+    </div>
+    <span class="weather__temperature">
+      <span class="visually-hidden">Температура воздуха</span>${weather.temperature}°
+    </span>
+    <div class="weather__other">
+      <div class="weather__details">
+        <img
+          src="./public/icons/broken-clouds.svg"
+          alt=""
+          class="weather__icon"
+          width="24"
+          height="24"
+        />
+        <span class="weather__condition">${weather.condition}</span>
+      </div>
+      <span class="weather__perceived-temperature">Ощущается как ${weather.feels_like}°</span>
+    </div>
+  `
+};
+
+export const renderWeatherCards = (cards) => {
   const cardsList = document.querySelector(".cards");
   cardsList.innerHTML = "";
 
-  meteoData.forEach((card) => {
+  cards.forEach((card) => {
     const { title, icon, value, more } = card;
 
     const cardsItem = document.createElement("li");

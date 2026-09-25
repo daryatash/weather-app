@@ -44,6 +44,12 @@ export const sliderHoursData = {
       iconAlt: "Облачно",
       degrees: "-13°",
     },
+    {
+      time: "09:00",
+      iconSrc: "./public/icons/broken-clouds.svg",
+      iconAlt: "Облачно",
+      degrees: "-13°",
+    },
   ],
 };
 
