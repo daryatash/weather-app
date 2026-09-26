@@ -1,7 +1,7 @@
-import { getWindDirection, formatTime, formatDuration } from './utils.js'
+import { getWindDirection, formatTime, formatDuration, formatString } from './utils.js'
 
 export const mapWeather = (data) => {
-  const condition = data.weather[0].description[0].toUpperCase() + data.weather[0].description.slice(1)
+  const condition = formatString(data.weather[0].description)
 
   const date = new Date((Math.floor(Date.now() / 1000) + data.timezone) * 1000)
   const days = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота']
@@ -23,7 +23,8 @@ export const mapWeather = (data) => {
     time: formatTime(Math.floor(Date.now() / 1000), data.timezone),
     temperature: Math.round(data.main.temp),
     condition: condition,
-    feels_like: Math.round(data.main.feels_like)
+    feels_like: Math.round(data.main.feels_like),
+    icon: data.weather[0].icon
   }
 }
 
@@ -95,11 +96,83 @@ export const mapWeatherCards = (data) => {
     {
       title: 'Сила ветра',
       icon: './public/icons/meteodata/direction.svg',
-      value: `${data.wind.speed} м/с`,
+      value: `${Math.round(data.wind.speed)} м/с`,
       more: {
         progressBar: false,
         firstDescription: windDirection,
       }
     }
   ]
+}
+
+export const map24HoursCards = (data) => {
+  const timezone = data.city.timezone
+
+  return {
+    title: "на 24 часа",
+    id: "tab_24h",
+    items: data.list.slice(0,8).map(item => {
+      const description = item.weather[0].description
+
+      return {
+        time: formatTime(item.dt, timezone),
+        iconSrc: `./public/icons/weather-icons/${item.weather[0].icon}.svg`,
+        iconAlt: `${formatString(description)}`,
+        degrees: `${Math.round(item.main.temp)}°`,
+      }
+    })
+  }
+}
+
+export const map5DaysCards = (data) => {
+  const timezone = data.city.timezone
+
+  const groups = {}
+
+  data.list.forEach(item => {
+      const localDate = new Date((item.dt + timezone) * 1000)
+      const key = localDate.toISOString().slice(0,10)
+
+    if (!groups[key]) {
+      groups[key] = []
+    }
+
+    groups[key].push(item)
+  })
+
+  const days = Object.values(groups).slice(0, 5)
+
+  const shortMonths = ['янв.','февр.','марта','апр.','мая','июня','июля','авг.','сент.','окт.','нояб.','дек.']
+  const shortDays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
+
+  return {
+    title: "на 5 дней",
+    id: "tab_5d",
+    items: days.map(dayItems => {
+      const date = new Date((dayItems[0].dt + timezone) * 1000)
+      const dd = String(date.getUTCDate()).padStart(2, '0')
+
+      const tempMinArray = []
+      const tempMaxArray = []
+      dayItems.forEach(item => {
+        tempMinArray.push(item.main.temp_min)
+        tempMaxArray.push(item.main.temp_max)
+      })
+
+      const tempMin = tempMinArray.length > 1 ? Math.min(...tempMinArray) : tempMinArray[0]
+      const tempMax = tempMaxArray.length > 1 ? Math.max(...tempMaxArray) : tempMaxArray[0]
+
+      const dayPoint = dayItems.find(item => item.sys.pod === 'd')
+      const noonPoint = dayPoint ?? dayItems[Math.floor(dayItems.length / 2)]
+
+      return {
+        day: shortDays[date.getUTCDay()],
+        date: `${dd} ${shortMonths[date.getUTCMonth()]}`,
+        fullDate: date.toISOString().slice(0,10),
+        iconSrc: `./public/icons/weather-icons/${noonPoint.weather[0].icon}.svg`,
+        iconAlt: formatString(noonPoint.weather[0].description),
+        degrees: `от ${Math.round(tempMin)}° до ${Math.round(tempMax)}°`,
+      }
+    }),
+  }
 }

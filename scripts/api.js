@@ -16,7 +16,7 @@ export async function getMeteoData(lat, lon) {
   }
 }
 
-export async function get5Days3HoursMeteoData(lat, lon) {
+export async function get5Days24HoursMeteoData(lat, lon) {
   try {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&lang=ru&units=metric&appid=01a4e64120ae63b6e8e5a12837f5c87f`)
     if (!response.ok) {

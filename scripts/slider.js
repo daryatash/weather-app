@@ -36,3 +36,43 @@ export const renderSliderItems = (item, sliderList) => {
 
     sliderList.appendChild(sliderItem)
 }
+
+const getActiveList = () => {
+    const activePanel = document.querySelector('.slider__tabpanel.active')
+    return activePanel.querySelector('.slider__list')
+}
+
+export const updateSlider = () => {
+    const list = getActiveList()
+    const prevButton = document.querySelector('.slider__button[aria-label="Назад"]')
+    const nextButton = document.querySelector('.slider__button[aria-label="Вперед"]')
+    const atStart = list.scrollLeft <= 0
+    const atEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 1
+    const noScroll = list.scrollWidth <= list.clientWidth
+    prevButton.disabled = atStart
+    nextButton.disabled = atEnd
+    list.classList.toggle('slider__list--fade-left', !atStart && !noScroll)
+    list.classList.toggle('slider__list--fade-right', !atEnd && !noScroll)
+}
+
+export const scrollSlider = () => {
+    const prevButton = document.querySelector('.slider__button[aria-label="Назад"]')
+    const nextButton = document.querySelector('.slider__button[aria-label="Вперед"]')
+
+    const scroll = (direction) => {
+        const list = getActiveList()
+        list.scrollBy({
+            left: direction * list.clientWidth,
+            behavior: "smooth"
+        })
+    }
+
+    prevButton.addEventListener('click', () => scroll(-1))
+    nextButton.addEventListener('click', () => scroll(1))
+
+    document.querySelectorAll('.slider__list').forEach(list => {
+        list.addEventListener('scroll', updateSlider)
+    })
+
+    updateSlider()
+}

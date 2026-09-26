@@ -1,4 +1,4 @@
-import { renderSliderItems } from './slider.js'
+import { renderSliderItems, updateSlider } from './slider.js'
 import { sliderHoursData, sliderDaysData } from './sliderData.js'
 
 const stateClasses = {
@@ -39,11 +39,11 @@ const createTabsPanelElement = (id, tabButtonId) => {
     return panel
 }
 
-export const renderTabs = () => {
+export const renderTabs = (data1, data2) => {
     const tabsMenu = document.querySelector('.tabs__menu')
     const sliderContent = document.querySelector('.slider__content')
 
-    const sliderData = [sliderHoursData, sliderDaysData]
+    const sliderData = [data1, data2]
 
     sliderData.forEach((forecast, index) => {
         const { id, title } = forecast
@@ -97,6 +97,8 @@ export const toggleTabs = () => {
             
             const nextActiveTabPanel = document.getElementById(button.getAttribute(stateAttributes.dataTab))
             nextActiveTabPanel.classList.add(stateClasses.active)
+
+            updateSlider()
         })
     })
 }

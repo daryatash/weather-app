@@ -18,7 +18,7 @@ export const renderWeather = (weather) => {
     <div class="weather__other">
       <div class="weather__details">
         <img
-          src="./public/icons/broken-clouds.svg"
+          src="./public/icons/weather-icons/${weather.icon}.svg"
           alt=""
           class="weather__icon"
           width="24"
