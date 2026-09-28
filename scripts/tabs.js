@@ -43,6 +43,9 @@ export const renderTabs = (data1, data2) => {
     const tabsMenu = document.querySelector('.tabs__menu')
     const sliderContent = document.querySelector('.slider__content')
 
+    tabsMenu.innerHTML = ''
+    sliderContent.innerHTML = ''
+
     const sliderData = [data1, data2]
 
     sliderData.forEach((forecast, index) => {

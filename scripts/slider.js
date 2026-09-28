@@ -69,7 +69,9 @@ export const scrollSlider = () => {
 
     prevButton.addEventListener('click', () => scroll(-1))
     nextButton.addEventListener('click', () => scroll(1))
+}
 
+export const attachSliderScroll = () => {
     document.querySelectorAll('.slider__list').forEach(list => {
         list.addEventListener('scroll', updateSlider)
     })
