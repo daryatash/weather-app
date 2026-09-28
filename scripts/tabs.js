@@ -1,5 +1,4 @@
 import { renderSliderItems, updateSlider } from './slider.js'
-import { sliderHoursData, sliderDaysData } from './sliderData.js'
 
 const stateClasses = {
   active: "active",
