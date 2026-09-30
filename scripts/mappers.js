@@ -71,7 +71,7 @@ export const mapWeatherCards = (data) => {
         progressBar: true,
         progressValue: visibility,
         progressMin: 0,
-        progressMax: 100, 
+        progressMax: 20, 
         firstDescription: visibility < 1 ? 'Плохая' : visibility < 10 ? 'Пониженная' : visibility > 20 ? 'Отличная' : 'Нормальная',
       }
     },
@@ -95,11 +95,12 @@ export const mapWeatherCards = (data) => {
     },
     {
       title: 'Сила ветра',
-      icon: './public/icons/meteodata/direction.svg',
+      icon: './public/icons/meteodata/direction.png',
       value: `${Math.round(data.wind.speed)} м/с`,
+      direction: windDirection.angle,
       more: {
         progressBar: false,
-        firstDescription: windDirection,
+        firstDescription: windDirection.label,
       }
     }
   ]

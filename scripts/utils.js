@@ -16,7 +16,10 @@ export const getWindDirection = (degrees) => {
     'Северный', 'Северо-восточный', 'Восточный', 'Юго-восточный', 'Южный', 'Юго-западный', 'Западный', 'Северо-западный'
   ]
   const index = Math.round(degrees / 45) % 8
-  return directions[index]
+  return {
+    label: directions[index],
+    angle: index * 45
+  }
 }
 
 export const formatString = (str) => {

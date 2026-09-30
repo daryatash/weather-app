@@ -67,6 +67,8 @@
 }
 
 .cards__item-icon {
+    transform-origin: 50% 50%;
+    
     @media (min-width: 641px) and (max-width: 767px) {
         width: clamp(24px, 3.9vw, 32px);
         height: clamp(24px, 3.9vw, 32px);

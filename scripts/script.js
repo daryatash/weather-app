@@ -1,5 +1,5 @@
 import { getSavedCoords, saveCoords, isLocationAsked, markLocationAsked } from './storage.js'
-import { getMeteoData, get5Days24HoursMeteoData } from './api.js'
+import { getMeteoData, get5Days24HoursMeteoData, getCityByName } from './api.js'
 import { mapWeather, mapWeatherCards, map24HoursCards, map5DaysCards } from './mappers.js'
 import { renderSearch } from './search.js'
 import { renderWeather, renderWeatherCards } from './weather.js'
@@ -32,8 +32,29 @@ const loadWeather = async (lat, lon) => {
   attachSliderScroll()
 }
 
+const handleSearch = async (query) => {
+  try {
+    const results = await getCityByName(query)
+    console.log(results.length)
+    return results.map(item => ({
+      lat: item.lat,
+      lon: item.lon,
+      label: `${item.local_names?.ru ?? item.name}, ${item.state ?? item.country}`,
+    }))
+  } catch (error) {
+    console.error('Ошибка поиска:', error.message)
+    return []
+  }
+}
+
+const handleSelect = async (item) => {
+  const { lat, lon } = item
+  saveCoords({ lat, lon })
+  await loadWeather(lat, lon)
+}
+
 const init = async () => {
-  renderSearch()
+  renderSearch(handleSearch, handleSelect)
   scrollSlider()
 
   const saved = getSavedCoords()

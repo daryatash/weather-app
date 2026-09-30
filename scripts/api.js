@@ -29,3 +29,13 @@ export async function get5Days24HoursMeteoData(lat, lon) {
     throw error
   }
 }
+
+
+export async function getCityByName(query) {
+  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(query)}&limit=10&appid=01a4e64120ae63b6e8e5a12837f5c87f`)
+  if (!response.ok) {
+    throw new Error(`HTTP ошибка! Код ${response.status}`)
+  }
+  const data = await response.json()
+  return data
+}

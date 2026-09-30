@@ -32,6 +32,7 @@ export const renderWeather = (weather) => {
 };
 
 export const renderWeatherCards = (cards) => {
+  const OFFSET = 45
   const cardsList = document.querySelector(".cards");
   cardsList.innerHTML = "";
 
@@ -91,6 +92,11 @@ export const renderWeatherCards = (cards) => {
     cardsItem.querySelector(".cards__item-title").textContent = title;
     cardsItem.querySelector(".cards__item-icon").src = icon;
     cardsItem.querySelector(".cards__item-value").textContent = value;
+
+    if (card.direction !== undefined) {
+      const iconElem = cardsItem.querySelector(".cards__item-icon")
+      iconElem.style.transform = `rotate(${card.direction - OFFSET}deg)`
+    }
 
     if (more.progressBar) {
       const progressBar = cardsItem.querySelector(".progress__bar");
