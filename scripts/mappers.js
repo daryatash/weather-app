@@ -1,6 +1,6 @@
 import { getWindDirection, formatTime, formatDuration, formatString } from './utils.js'
 
-export const mapWeather = (data) => {
+export const mapWeather = (data, cityName) => {
   const condition = formatString(data.weather[0].description)
 
   const date = new Date((Math.floor(Date.now() / 1000) + data.timezone) * 1000)
@@ -16,7 +16,7 @@ export const mapWeather = (data) => {
   const dayAndMonth = `${dd} ${months[date.getUTCMonth()]}`
 
   return {
-    city: data.name,
+    city: cityName || data.name,
     day: day,
     dateISO: iso,
     dateDayAndMonth: dayAndMonth,

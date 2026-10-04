@@ -31,7 +31,8 @@ export const renderSearch = (onSearch, onSelect) => {
             li.className = 'search__dropdown-item'
             li.textContent = item.label
             li.dataset.lat = item.lat
-            li.dataset.lon = item.lon
+            li.dataset.lon = item.lon   
+            li.dataset.name = item.name
             searchDropdown.appendChild(li)
         })
 
@@ -60,6 +61,7 @@ export const renderSearch = (onSearch, onSelect) => {
         const item = {
             lat: Number(li.dataset.lat),
             lon: Number(li.dataset.lon),
+            name: li.dataset.name,
         }
 
         onSelect(item)

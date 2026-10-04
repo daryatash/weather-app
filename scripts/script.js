@@ -17,10 +17,10 @@ const getPosition = () => {
   })
 }
 
-const loadWeather = async (lat, lon) => {
+const loadWeather = async (lat, lon, cityName) => {
   const data = await getMeteoData(lat, lon)
   const data5Days24Hours = await get5Days24HoursMeteoData(lat, lon)
-  const weather = mapWeather(data)
+  const weather = mapWeather(data, cityName)
   const weatherCards = mapWeatherCards(data)
   const hours24Cards = map24HoursCards(data5Days24Hours)
   const days5Cards = map5DaysCards(data5Days24Hours)
@@ -35,11 +35,11 @@ const loadWeather = async (lat, lon) => {
 const handleSearch = async (query) => {
   try {
     const results = await getCityByName(query)
-    console.log(results.length)
     return results.map(item => ({
-      lat: item.lat,
-      lon: item.lon,
-      label: `${item.local_names?.ru ?? item.name}, ${item.state ?? item.country}`,
+      lat: item.properties.coordinates.latitude,
+      lon: item.properties.coordinates.longitude,
+      label: `${item.properties.name}, ${item.properties.place_formatted ?? ''}`,
+      name: item.properties.name
     }))
   } catch (error) {
     console.error('Ошибка поиска:', error.message)
@@ -48,9 +48,9 @@ const handleSearch = async (query) => {
 }
 
 const handleSelect = async (item) => {
-  const { lat, lon } = item
-  saveCoords({ lat, lon })
-  await loadWeather(lat, lon)
+  const { lat, lon, name } = item
+  saveCoords({ lat, lon, name })
+  await loadWeather(lat, lon, name)
 }
 
 const init = async () => {
@@ -60,7 +60,7 @@ const init = async () => {
   const saved = getSavedCoords()
 
   if (saved) {
-    loadWeather(saved.lat, saved.lon)
+    loadWeather(saved.lat, saved.lon, saved.name)
     return
   }
 

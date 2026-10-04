@@ -1,7 +1,7 @@
 const latNsk = 55.0188
 const lonNsk = 82.9340
 const API_key = '01a4e64120ae63b6e8e5a12837f5c87f'
-
+const MAPBOX_TOKEN = 'pk.YOUR_TOKEN'
 export async function getMeteoData(lat, lon) {
   try {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=ru&units=metric&appid=01a4e64120ae63b6e8e5a12837f5c87f`)
@@ -30,12 +30,20 @@ export async function get5Days24HoursMeteoData(lat, lon) {
   }
 }
 
-
 export async function getCityByName(query) {
-  const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(query)}&limit=10&appid=01a4e64120ae63b6e8e5a12837f5c87f`)
+  const params = new URLSearchParams({
+    q: query,
+    access_token: MAPBOX_TOKEN,
+    language: 'ru',
+    types: 'place',
+    limit: '10',
+    autocomplete: 'true',
+    proximity: 'ip',
+  })
+  const response = await fetch(`https://api.mapbox.com/search/geocode/v6/forward?${params}`)
   if (!response.ok) {
     throw new Error(`HTTP ошибка! Код ${response.status}`)
   }
   const data = await response.json()
-  return data
+  return data.features
 }
