@@ -5,7 +5,19 @@ export const getSavedCoords = () => {
   const savedCoords = localStorage.getItem(COORDS_KEY)
   if (!savedCoords) return null
   try {
-    return JSON.parse(savedCoords)
+    const parsedCoords = JSON.parse(savedCoords)
+
+    if (!parsedCoords || typeof parsedCoords.lat !== 'number' || typeof parsedCoords.lon !== 'number') {
+      localStorage.removeItem(COORDS_KEY)
+      return
+    }
+
+    if (!Number.isFinite(parsedCoords.lat) || !Number.isFinite(parsedCoords.lon)) {
+      localStorage.removeItem(COORDS_KEY)
+      return
+    }
+
+    return parsedCoords
   } catch {
     localStorage.removeItem(COORDS_KEY)
     return null
@@ -13,6 +25,16 @@ export const getSavedCoords = () => {
 }
 
 export const saveCoords = (coords) => {
+  if (!coords || typeof coords.lat !== 'number' || typeof coords.lon !== 'number') {
+    console.warn('Некорректные координаты, сохранение невозможно', coords)
+    return
+  }
+
+  if (!Number.isFinite(coords.lat) || !Number.isFinite(coords.lon)) {
+    console.warn('Некорректные координаты, сохранение невозможно', coords)
+    return
+  }
+
   localStorage.setItem(COORDS_KEY, JSON.stringify(coords))
 }
 

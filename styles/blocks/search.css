@@ -153,3 +153,9 @@
         font-size: 14px;
     }
 }
+
+.search__dropdown-item--not-found {
+    cursor: default;
+    pointer-events: none;
+    color: var(--netural-filled-600)
+}

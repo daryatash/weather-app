@@ -20,7 +20,13 @@ export const renderSearch = (onSearch, onSelect) => {
 
     const renderDropdown = (items) => {
         if (!items.length) {
-            hideDropdown()
+            // hideDropdown()
+            searchDropdown.innerHTML = ''
+            const li = document.createElement('li')
+            li.className = 'search__dropdown-item search__dropdown-item--not-found'
+            li.textContent = 'Город не найден'
+            searchDropdown.appendChild(li)
+            searchDropdown.hidden = false
             return
         }
 
@@ -63,6 +69,8 @@ export const renderSearch = (onSearch, onSelect) => {
             lon: Number(li.dataset.lon),
             name: li.dataset.name,
         }
+
+        if (!Number.isFinite(item.lat) || !Number.isFinite(item.lon)) return
 
         onSelect(item)
         searchInput.value = ''

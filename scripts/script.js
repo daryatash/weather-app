@@ -5,6 +5,7 @@ import { renderSearch } from './search.js'
 import { renderWeather, renderWeatherCards } from './weather.js'
 import { scrollSlider, attachSliderScroll } from './slider.js'
 import { renderTabs, toggleTabs } from './tabs.js'
+import { showLoader, hideLoader } from './loader.js'
 
 const DEFAULT_COORDS = { lat: 55.7558, lon: 37.6173 } 
 
@@ -18,18 +19,23 @@ const getPosition = () => {
 }
 
 const loadWeather = async (lat, lon, cityName) => {
-  const data = await getMeteoData(lat, lon)
-  const data5Days24Hours = await get5Days24HoursMeteoData(lat, lon)
-  const weather = mapWeather(data, cityName)
-  const weatherCards = mapWeatherCards(data)
-  const hours24Cards = map24HoursCards(data5Days24Hours)
-  const days5Cards = map5DaysCards(data5Days24Hours)
+  showLoader()
+  try {
+    const data = await getMeteoData(lat, lon)
+    const data5Days24Hours = await get5Days24HoursMeteoData(lat, lon)
+    const weather = mapWeather(data, cityName)
+    const weatherCards = mapWeatherCards(data)
+    const hours24Cards = map24HoursCards(data5Days24Hours)
+    const days5Cards = map5DaysCards(data5Days24Hours)
 
-  renderWeather(weather)
-  renderWeatherCards(weatherCards)
-  renderTabs(hours24Cards, days5Cards)
-  toggleTabs()
-  attachSliderScroll()
+    renderWeather(weather)
+    renderWeatherCards(weatherCards)
+    renderTabs(hours24Cards, days5Cards)
+    toggleTabs()
+    attachSliderScroll()
+  } finally {
+    hideLoader()
+  }
 }
 
 const handleSearch = async (query) => {
