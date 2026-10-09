@@ -38,19 +38,14 @@ const loadWeather = async (lat, lon, cityName) => {
   }
 }
 
-const handleSearch = async (query) => {
-  try {
-    const results = await getCityByName(query)
-    return results.map(item => ({
-      lat: item.properties.coordinates.latitude,
-      lon: item.properties.coordinates.longitude,
-      label: `${item.properties.name}, ${item.properties.place_formatted ?? ''}`,
-      name: item.properties.name
-    }))
-  } catch (error) {
-    console.error('Ошибка поиска:', error.message)
-    return []
-  }
+const handleSearch = async (query, signal) => {
+  const results = await getCityByName(query, signal)
+  return results.map(item => ({
+    lat: item.properties.coordinates.latitude,
+    lon: item.properties.coordinates.longitude,
+    label: `${item.properties.name}, ${item.properties.place_formatted ?? ''}`,
+    name: item.properties.name
+  }))
 }
 
 const handleSelect = async (item) => {

@@ -6,6 +6,8 @@ export const renderSearch = (onSearch, onSelect) => {
     const searchDropdown = document.querySelector(".search__dropdown")
 
     let timer = null
+    let controller = null
+    const cache = new Map()
 
     const onClearInput = () => {
         searchInput.value = "";
@@ -16,6 +18,41 @@ export const renderSearch = (onSearch, onSelect) => {
     const hideDropdown = () => {
         searchDropdown.hidden = true
         searchDropdown.innerHTML = ''
+    }
+
+    const selectItem = (li) => {
+        const item = {
+            lat: Number(li.dataset.lat),
+            lon: Number(li.dataset.lon),
+            name: li.dataset.name,
+        }
+
+        if (!Number.isFinite(item.lat) || !Number.isFinite(item.lon)) return
+
+        onSelect(item)
+        searchInput.value = ''
+        hideDropdown()
+    }
+
+    const moveInList = (direction) => {
+        const items = [...searchDropdown.querySelectorAll('.search__dropdown-item:not(.search__dropdown-item--not-found)')]
+        if (!items.length) return
+
+        const currentIndex = items.findIndex(li => li.classList.contains('is-active'))
+        let nextIndex
+
+        if (currentIndex === -1) {
+            nextIndex = direction > 0 ? 0 : items.length - 1
+        } else {
+            nextIndex = currentIndex + direction
+
+            if (nextIndex < 0) nextIndex = items.length - 1
+            if (nextIndex > items.length - 1) nextIndex = 0
+        }
+
+        items.forEach(li => li.classList.remove('is-active'))
+        items[nextIndex].classList.add('is-active')
+        items[nextIndex].scrollIntoView({ block: "nearest" })
     }
 
     const renderDropdown = (items) => {
@@ -53,8 +90,27 @@ export const renderSearch = (onSearch, onSelect) => {
                 hideDropdown()
                 return
             }
-            const results = await onSearch(query)
-            renderDropdown(results)
+
+            if (controller) {
+                controller.abort()
+            }
+            controller = new AbortController()
+
+            try {
+                let results
+                if (cache.has(query)) {
+                    results = cache.get(query)
+                } else {
+                    results = await onSearch(query, controller.signal)
+                    cache.set(query, results)
+                    console.log('cache:', cache)
+                }
+                renderDropdown(results)
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Ошибка поиска:', error)
+                }
+            }
         }, 300)
      });
 
@@ -64,17 +120,7 @@ export const renderSearch = (onSearch, onSelect) => {
         const li = event.target.closest('.search__dropdown-item')
         if (!li) return
 
-        const item = {
-            lat: Number(li.dataset.lat),
-            lon: Number(li.dataset.lon),
-            name: li.dataset.name,
-        }
-
-        if (!Number.isFinite(item.lat) || !Number.isFinite(item.lon)) return
-
-        onSelect(item)
-        searchInput.value = ''
-        hideDropdown()
+        selectItem(li)
     })
 
     document.addEventListener("click", (event) => {
@@ -87,17 +133,22 @@ export const renderSearch = (onSearch, onSelect) => {
         if (event.key === 'Escape') {
             hideDropdown()
         }
+
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault()
+            moveInList(event.key === 'ArrowDown' ? 1 : -1)
+        }
     })
 
     searchForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const query = searchInput.value.trim()
-        if (!query) return
-        onSearch(query).then(results => {
-            if (!results.length) return
-            onSelect(results[0])
-            searchInput.value = ''
-            hideDropdown()
-        })
+        event.preventDefault()
+
+        const items = searchDropdown.querySelectorAll('.search__dropdown-item:not(.search__dropdown-item--not-found)')
+        if (!items.length) return
+
+        const activeElement = searchDropdown.querySelector('.search__dropdown-item.is-active')
+        const target = activeElement ?? items[0]
+
+        selectItem(target)
     });
 }

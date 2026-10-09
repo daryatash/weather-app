@@ -118,7 +118,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 2000;
     max-height: 220px;
     overflow-y: auto;
     background: var(--netural-filled-100);
