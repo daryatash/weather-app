@@ -18,6 +18,7 @@ export const renderSearch = (onSearch, onSelect) => {
     const hideDropdown = () => {
         searchDropdown.hidden = true
         searchDropdown.innerHTML = ''
+        searchInput.setAttribute('aria-expanded', 'false')
     }
 
     const selectItem = (li) => {
@@ -50,9 +51,13 @@ export const renderSearch = (onSearch, onSelect) => {
             if (nextIndex > items.length - 1) nextIndex = 0
         }
 
-        items.forEach(li => li.classList.remove('is-active'))
+        items.forEach(li => {
+            li.classList.remove('is-active')
+            li.setAttribute('aria-selected', 'false')
+        })
         items[nextIndex].classList.add('is-active')
         items[nextIndex].scrollIntoView({ block: "nearest" })
+        items[nextIndex].setAttribute('aria-selected', 'true')
     }
 
     const renderDropdown = (items) => {
@@ -64,6 +69,8 @@ export const renderSearch = (onSearch, onSelect) => {
             li.textContent = 'Город не найден'
             searchDropdown.appendChild(li)
             searchDropdown.hidden = false
+            li.setAttribute('role', 'option')
+            li.setAttribute('aria-disabled', 'true')
             return
         }
 
@@ -76,10 +83,12 @@ export const renderSearch = (onSearch, onSelect) => {
             li.dataset.lat = item.lat
             li.dataset.lon = item.lon   
             li.dataset.name = item.name
+            li.setAttribute('role', 'option')
             searchDropdown.appendChild(li)
         })
 
         searchDropdown.hidden = false
+        searchInput.setAttribute('aria-expanded', 'true')
     }
 
     searchInput.addEventListener("input", (event) => {
@@ -103,7 +112,6 @@ export const renderSearch = (onSearch, onSelect) => {
                 } else {
                     results = await onSearch(query, controller.signal)
                     cache.set(query, results)
-                    console.log('cache:', cache)
                 }
                 renderDropdown(results)
             } catch (error) {

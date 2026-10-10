@@ -6,7 +6,14 @@
       name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <title>WeatherApp</title>
+    <meta name="description" content="Приложение погоды: текущая погода, прогноз на 24 часа и 5 дней" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="WeatherApp - прогноз погоды" />
+    <meta property="og:description" content="Текущая погода, прогноз на 24 часа и 5 дней" />
+    <meta property="og:url" content="https://daryatash.github.io/weather-app/" />
+    <meta property="og:image" content="https://daryatash.github.io/weather-app/docs/main.png" />
+    <meta property="og:locale" content="ru_RU" />
+    <title>WeatherApp — прогноз погоды</title>
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="icon" href="./public/icons/favicon.svg" type="image/svg+xml" />
     <script type="module" src="./scripts/script.js"></script>
@@ -34,9 +41,9 @@
             />
           </picture>
         </a>
-        <form class="header__search search">
+        <form class="header__search search" role="search">
           <label class="search__label visually-hidden" for="search"
-            >Поиск</label
+            >Поиск по городу</label
           >
           <input
             class="search__input"
@@ -44,6 +51,10 @@
             id="search"
             placeholder="Поиск по городу"
             autocomplete="off"
+            aria-controls="search-dropdown"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            role="combobox"
           />
           <img
             class="search__icon"
@@ -74,7 +85,7 @@
               />
             </svg>
           </button>
-          <ul class="search__dropdown" hidden></ul>
+          <ul class="search__dropdown" id="search-dropdown" role="listbox" hidden></ul>
         </form>
       </header>
       <main>
